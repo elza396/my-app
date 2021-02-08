@@ -1,0 +1,36 @@
+.room {
+    width: 300px;
+    height: 200px;
+    background: bisque;
+    border: 1px solid #d49d7a;
+    border-radius: 20px;
+}
+.room__container {
+    padding: 30px 20px;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: #393838;
+    font-size: 14px;
+}
+.room__room {
+    color: #542202;
+    font-size: 20px;
+}
+.room__button {
+    width: 180px;
+    height: 30px;
+    background: #a74405;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.room__button:active {
+    background: #542202;
+}

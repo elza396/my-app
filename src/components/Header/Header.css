@@ -15,4 +15,15 @@
 }
 .header__button {
     margin-right: 45px;
+    width: 180px;
+    height: 30px;
+    background: bisque;
+    font-size: 16px;
+    border: 1px solid #d68755;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 10px;
+}
+.header__button:active {
+    background: #d68755;
 }

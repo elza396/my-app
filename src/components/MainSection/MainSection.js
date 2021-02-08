@@ -9,7 +9,7 @@ export function MainSection() {
         <div className="main_section">
             {/*<Chat />*/}
             <Rooms />
-            <ModalWindow />
+            {/*<ModalWindow />*/}
         </div>
     )
 }

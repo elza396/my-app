@@ -1,5 +1,5 @@
 import React from 'react';
-import '../MainSection.css';
+import './Rooms.css';
 import {Room} from "./Room/Room";
 
 export function Rooms() {
