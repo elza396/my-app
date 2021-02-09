@@ -5,6 +5,9 @@ import {Chat} from "./Chat/Chat";
 import {ModalWindow} from "../ModalWindow/ModalWindow";
 
 export function MainSection() {
+
+
+
     return (
         <div className="main_section">
             {/*<Chat />*/}
