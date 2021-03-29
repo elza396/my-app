@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
-import {counterReducer} from "./counter/reducer";
+import {roomsReducer} from "./rooms/reducer";
 
 export const rootReducer = combineReducers({
-    counter: counterReducer,
+    rooms: roomsReducer,
 })

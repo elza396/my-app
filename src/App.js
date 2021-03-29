@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Header} from "./components/Header/Header";
-import {MainSection} from "./components/MainSection/MainSection";
+import {Rooms} from "./components/MainSection/Rooms/Rooms";
+import {Chat} from "./components/MainSection/Chat/Chat";
 
 function App() {
+
+    const [isOpenedChat, setIsOpenedChat] = useState(false);
+
+
   return (
     <div>
-      <Header />
-      <MainSection />
+      <Header
+          buttonName={isOpenedChat ? "Выйти из комнаты" : "Создать комнату"}
+      />
+      <div className="main_section">
+          {isOpenedChat ? <Chat /> : <Rooms
+              onClick={() => setIsOpenedChat(true)}
+          />}
+      </div>
     </div>
   );
 }

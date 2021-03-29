@@ -27,3 +27,33 @@
 .header__button:active {
     background: #d68755;
 }
+
+/*modal*/
+.modal__body {
+    border: #d49d7a 1px solid;
+    border-radius: 15px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+}
+.modal__form > input {
+    width: 400px;
+    height: 35px;
+    background: blanchedalmond;
+    border: #d49d7a 1px solid;
+    border-radius: 5px;
+    padding: 0 10px;
+    outline: none;
+    box-sizing: border-box;
+}
+.modal__form > input:focus {
+    border: #a74405 1px solid;
+}
+.modal__form > select {
+    width: 400px;
+    height: 35px;
+    background: blanchedalmond;
+    border: #d49d7a 1px solid;
+    border-radius: 5px;
+    padding: 0 10px;
+    outline: none;
+}
