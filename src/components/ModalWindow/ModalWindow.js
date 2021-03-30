@@ -17,8 +17,7 @@ export function ModalWindow(props) {
                     />
                 </div>
                 <button className="modal__button"
-                        onClick={(e) => {
-                            e.preventDefault();
+                        onClick={() => {
                             props.positiveAction();
                             props.onClose();
                         }}

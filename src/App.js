@@ -13,6 +13,9 @@ function App() {
     <div>
       <Header
           buttonName={isOpenedChat ? "Выйти из комнаты" : "Создать комнату"}
+          openChat={() => setIsOpenedChat(true)}
+          closeChat={() => setIsOpenedChat(false)}
+          isOpenedChat={isOpenedChat}
       />
       <div className="main_section">
           {isOpenedChat ? <Chat /> : <Rooms

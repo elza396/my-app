@@ -6,13 +6,12 @@ import {addRoom} from "../../redux/rooms/actions";
 import {useDispatch} from "react-redux";
 
 export function Header(props) {
-
     const [isOpenedModal, setIsOpenedModal] = useState(false);
     const [room, setRoom] = useState({
         name: '',
-        topic: '',
+        topic: 'Общение',
         creator: '',
-        date: '',
+        date: new Date().toLocaleString(),
     })
     const dispatch = useDispatch();
 
@@ -22,41 +21,68 @@ export function Header(props) {
             <p>Just chat</p>
             <button
                 className="header__button"
-                onClick={() => setIsOpenedModal(true)}
+                onClick={() => {props.isOpenedChat ? props.closeChat() : setIsOpenedModal(true)}}
             >{props.buttonName}</button>
 
             {isOpenedModal && <ModalWindow
-                onClose={() => setIsOpenedModal(false)}
+                onClose={() => {
+                    setIsOpenedModal(false);
+                    setRoom({
+                    name: '',
+                    topic: 'Общение',
+                    creator: '',
+                    date: new Date().toLocaleString(),
+                })
+                }}
                 modalName="Создание комнаты"
-                positiveAction={() => dispatch(addRoom({...room}))}
+                positiveAction={() => {
+                    dispatch(addRoom({...room}));
+                    props.openChat();
+                }}
                 positiveActionName="Создать"
-            >{
-                <div className="modal__body">
-                    <form action="" className="modal__body__room modal__form">
-                        <span>Название комнаты</span>
-                        <input type="text"
-                               onChange={(e) => setRoom({...room, name: e.target.value})}
-                        />
+            >
+                <div>
+                    <form
+                        className="modal__body"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            dispatch(addRoom({...room}));
+                            setRoom({
+                                name: '',
+                                topic: 'Общение',
+                                creator: '',
+                                date: new Date().toLocaleString(),
+                            });
+                            setIsOpenedModal(false);
+                            props.openChat();
+                        }}
+                    >
+                        <div className="modal__body__room modal__form">
+                            <span>Название комнаты</span>
+                            <input type="text"
+                                   onChange={(e) => setRoom({...room, name: e.target.value})}
+                            />
+                        </div>
+                        <div className="modal__body__topic modal__form">
+                            <span>Тема</span>
+                            <select name="topic" id=""
+                                    onChange={(e) => setRoom({...room, topic: e.target.value})}
+                            >
+                                <option value="Общение">Общение</option>
+                                <option value="Любовь">Любовь</option>
+                                <option value="Секс">Секс</option>
+                            </select>
+                        </div>
+                        <div className="modal__body__name modal__form">
+                            <span>Ваше имя</span>
+                            <input type="text"
+                                   onChange={(e) => setRoom({...room, creator: e.target.value})}
+                            />
+                        </div>
+                        <input className="form__hidden" type="submit" />
                     </form>
-                    <form action="" className="modal__body__topic modal__form">
-                        <span>Тема</span>
-                        <select name="topic" id=""
-                                onChange={(e) => setRoom({...room, topic: e.target.value})}
-                        >
-                            <option value="communication">Общение</option>
-                            <option value="love">Любовь</option>
-                            <option value="sex">Секс</option>
-                        </select>
-                    </form>
-                    <form action="" className="modal__body__name modal__form">
-                        <span>Ваше имя</span>
-                        <input type="text"
-                               onChange={(e) => setRoom({...room, creator: e.target.value})}
-                        />
-                    </form>
-                    {}
                 </div>
-            }</ModalWindow>}
+            </ModalWindow>}
         </div>
     )
 }
