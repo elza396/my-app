@@ -4,9 +4,10 @@ import logo from '../../icons/logo.png';
 import {ModalWindow} from "../ModalWindow/ModalWindow";
 import {addRoom} from "../../redux/rooms/actions";
 import {useDispatch} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
+import {NAV_CHAT} from "../../constants/navigation";
 
-export function Header(props) {
+export function Header() {
     const [isOpenedModal, setIsOpenedModal] = useState(false);
     const [room, setRoom] = useState({
         name: '',
@@ -15,6 +16,10 @@ export function Header(props) {
         date: new Date().toLocaleString(),
     })
     const dispatch = useDispatch();
+    const location = useLocation();
+    const history = useHistory();
+
+    const isOpenedChat = location.pathname === NAV_CHAT;
 
     return (
         <div className="header">
@@ -22,12 +27,13 @@ export function Header(props) {
                 <img className="logo" src={logo} alt="logo"/>
             </Link>
             <p>Just chat</p>
-            <Link to={(props.isOpenedChat || !isOpenedModal) ? "/rooms" : "/chat"} >
+            {isOpenedChat ? <Link to="/rooms" >
+                <button className="header__button">Выйти из комнаты</button>
+            </Link> :
                 <button
-                    className="header__button"
-                    onClick={() => {props.isOpenedChat ? props.closeChat() : setIsOpenedModal(true)}}
-                >{props.buttonName}</button>
-            </Link>
+                className="header__button"
+                onClick={() => {setIsOpenedModal(true)}}
+            >Создать комнату</button>}
 
             {isOpenedModal && <ModalWindow
                 onClose={() => {
@@ -42,7 +48,7 @@ export function Header(props) {
                 modalName="Создание комнаты"
                 positiveAction={() => {
                     dispatch(addRoom({...room}));
-                    props.openChat();
+                    history.push(NAV_CHAT);
                 }}
                 positiveActionName="Создать"
             >
@@ -59,7 +65,7 @@ export function Header(props) {
                                 date: new Date().toLocaleString(),
                             });
                             setIsOpenedModal(false);
-                            props.openChat();
+                            history.push(NAV_CHAT)
                         }}
                     >
                         <div className="modal__body__room modal__form">

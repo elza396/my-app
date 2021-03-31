@@ -4,7 +4,7 @@ import {Room} from "./Room/Room";
 import {useSelector} from "react-redux";
 
 
-export function Rooms(props) {
+export function Rooms() {
 
     const rooms = useSelector(state => state.rooms.all);
 
@@ -13,8 +13,6 @@ export function Rooms(props) {
             {rooms.map(r => {
                 return (
                     <Room
-                        isOpenedChat = {props.isOpenedChat}
-                        onClick = {props.onClick}
                         name={r.name}
                         topic={r.topic}
                         creator={r.creator}
