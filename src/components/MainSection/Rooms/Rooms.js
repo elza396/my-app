@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './Rooms.css';
 import {Room} from "./Room/Room";
 import {useSelector} from "react-redux";
@@ -13,6 +13,7 @@ export function Rooms(props) {
             {rooms.map(r => {
                 return (
                     <Room
+                        isOpenedChat = {props.isOpenedChat}
                         onClick = {props.onClick}
                         name={r.name}
                         topic={r.topic}

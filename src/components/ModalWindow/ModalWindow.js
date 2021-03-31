@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './ModalWindow.css';
 import close from './../../icons/close.svg';
+import {Link} from "react-router-dom";
 
 
 export function ModalWindow(props) {
@@ -16,12 +17,14 @@ export function ModalWindow(props) {
                          onClick={props.onClose}
                     />
                 </div>
-                <button className="modal__button"
-                        onClick={() => {
-                            props.positiveAction();
-                            props.onClose();
-                        }}
-                >{props.positiveActionName}</button>
+                <Link to="/chat">
+                    <button className="modal__button"
+                            onClick={() => {
+                                props.positiveAction();
+                                props.onClose();
+                            }}
+                    >{props.positiveActionName}</button>
+                </Link>
                 {props.children}
             </div>
         </div>, document.body

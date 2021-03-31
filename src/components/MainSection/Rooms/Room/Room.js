@@ -1,5 +1,6 @@
 import React from 'react';
 import './Room.css';
+import {Link} from "react-router-dom";
 
 export function Room(props) {
 
@@ -10,10 +11,14 @@ export function Room(props) {
                 <p className="room__topic">Тема: {props.topic}</p>
                 <p className="room__creator">Создатель: {props.creator}</p>
                 <p className="room__date">Дата создания: {props.date}</p>
-                <button
-                    className="room__button"
-                    onClick={()=> props.onClick()}
-                >Присоединиться</button>
+                <Link to="/chat" >
+                    <button
+                        className="room__button"
+                        onClick={()=> {
+                            props.onClick();
+                        }}
+                    >Присоединиться</button>
+                </Link>
             </div>
         </div>
     )

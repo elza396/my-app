@@ -4,6 +4,7 @@ import logo from '../../icons/logo.png';
 import {ModalWindow} from "../ModalWindow/ModalWindow";
 import {addRoom} from "../../redux/rooms/actions";
 import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
 
 export function Header(props) {
     const [isOpenedModal, setIsOpenedModal] = useState(false);
@@ -17,12 +18,16 @@ export function Header(props) {
 
     return (
         <div className="header">
-            <img className="logo" src={logo} alt="logo"/>
+            <Link to="/" >
+                <img className="logo" src={logo} alt="logo"/>
+            </Link>
             <p>Just chat</p>
-            <button
-                className="header__button"
-                onClick={() => {props.isOpenedChat ? props.closeChat() : setIsOpenedModal(true)}}
-            >{props.buttonName}</button>
+            <Link to={(props.isOpenedChat || !isOpenedModal) ? "/rooms" : "/chat"} >
+                <button
+                    className="header__button"
+                    onClick={() => {props.isOpenedChat ? props.closeChat() : setIsOpenedModal(true)}}
+                >{props.buttonName}</button>
+            </Link>
 
             {isOpenedModal && <ModalWindow
                 onClose={() => {
